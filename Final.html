@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assembly CPU</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 100vh; /* Set body height to viewport height */
+        background-image: url("Initial.jpg"); /* Set background image */
+        background-size: cover; /* Display the background image completely */
+        background-repeat: no-repeat;
+        background-position: center; /* Center the background image */
+      }
+
+      .container {
+        display: flex;
+        height: 100%;
+        position: relative;
+      }
+
+      .left-side {
+        flex: 1;
+        position: relative;
+      }
+
+      .right-side {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .image {
+        margin: 1%;
+        width: auto;
+        height: 18vh;
+        cursor: pointer; /* Add cursor pointer for draggable effect */
+        position: absolute; /* Position the images absolutely within the container */
+      }
+
+      @keyframes slideAndResizeGlass {
+        0% {
+          top: -40.8%;
+          left: 36%;
+        }
+        100% {
+          top: 60.8%;
+          left: 36%;
+        }
+      }
+
+      @keyframes slideAndResizeFront {
+        0% {
+          top: -44.4%;
+          left: 44%;
+        }
+        100% {
+          top: 55.4%;
+          left: 44%;
+        }
+      }
+
+      #assembly_cpu_glass {
+        position: absolute;
+        top: -40.8%;
+        left: 36%;
+        width: 14.2vw;
+        height: auto;
+        transform: translate(-50%, -50%);
+        z-index: 10; /* Ensure this is in front */
+      }
+
+      #assembly_cpu_front {
+        position: absolute;
+        top: -44.4%;
+        left: 44%;
+        width: 22.7vw;
+        height: auto;
+        transform: translate(-50%, -50%);
+        z-index: 10; /* Ensure this is in front */
+      }
+
+      .animate-glass {
+        animation: slideAndResizeGlass 3s forwards;
+      }
+
+      .animate-front {
+        animation: slideAndResizeFront 3s forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-side">
+        <img src="Assembly_CPU Glass.png" alt="Assembly CPU Glass" class="cover_images" id="assembly_cpu_glass">
+        <img src="Assembly_CPU Front.png" alt="Assembly CPU Front" class="cover_images" id="assembly_cpu_front">
+      </div>
+      <div class="right-side">
+        <!-- Removed all other images -->
+      </div>
+    </div>
+
+    <script>
+      function startAnimations() {
+        const glass = document.getElementById('assembly_cpu_glass');
+        const front = document.getElementById('assembly_cpu_front');
+        glass.classList.add('animate-glass');
+        front.classList.add('animate-front');
+      }
+
+      // Start animations after 2 seconds when the page is fully loaded
+      window.onload = function() {
+        setTimeout(startAnimations, 500);
+      };
+
+      // Function to append dragged images
+      const appendDraggedImage = (data) => {
+        if (data) {
+          const { id, x, y, height } = data;
+          const draggedImage = document.createElement("img");
+          draggedImage.src = `${id}.png`; // Assuming image filenames are the same as their IDs
+          draggedImage.alt = id;
+          draggedImage.classList.add("image");
+          draggedImage.style.position = "absolute";
+          draggedImage.style.left = x;
+          draggedImage.style.top = y;
+          draggedImage.style.height = height;
+          draggedImage.style.zIndex = 5; // Ensure these are behind glass and front
+          document.querySelector(".left-side").appendChild(draggedImage);
+        }
+      };
+
+      // Retrieve dragged image data from sessionStorage
+      const draggedImageData = JSON.parse(sessionStorage.getItem("draggedImage"));
+      const draggedImageData2 = JSON.parse(sessionStorage.getItem("draggedImage2"));
+      const draggedImageData3 = JSON.parse(sessionStorage.getItem("draggedImage3"));
+      const draggedImageData4 = JSON.parse(sessionStorage.getItem("draggedImage4"));
+
+      appendDraggedImage(draggedImageData);
+      appendDraggedImage(draggedImageData2);
+      appendDraggedImage(draggedImageData3);
+      appendDraggedImage(draggedImageData4);
+    </script>
+  </body>
+</html>

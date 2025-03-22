@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assembly CPU</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Set body height to viewport height */
+    background-image: url('Initial.jpg'); /* Set background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-repeat: no-repeat;
+    background-position: center; /* Center the background image */
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    position: relative;
+}
+
+.left-side {
+    flex: 1;
+    position: relative;
+}
+
+.right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+
+
+.next-button {
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 1% 2%;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.next-button:hover {
+    background-color: #0056b3;
+}
+
+/* Adjust positions of the images */
+#assembly_cpu_glass {
+    position: absolute;
+    top: 60.8%;
+    left: 36%;
+    width: 14.2vw;
+    height: auto;
+    transform: translate(-50%, -50%);
+}
+
+#assembly_cpu_front {
+    position: absolute;
+    top: 55.4%;
+    left: 44%;
+    width: 22.7vw;
+    height: auto;
+    transform: translate(-50%, -50%);
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <!-- New Images -->
+            <img src="Assembly_CPU Glass.png" alt="Assembly CPU Glass" class="cover_images" id="assembly_cpu_glass">
+            <img src="Assembly_CPU Front.png" alt="Assembly CPU Front" class="cover_images" id="assembly_cpu_front">
+            <!-- Next button -->
+            <button class="next-button" id="nextButton">Next</button>
+        </div>
+        <div class="right-side">
+            <!-- Removed all other images -->
+        </div>
+    </div>
+
+    <script>
+        // Animation keyframes for assembly_cpu_glass
+        const slideUpGlassKeyframes = `@keyframes slide-up-glass {
+            from {
+                top: 60.8%;
+            }
+            to {
+                top: -39.8%;
+            }
+        }`;
+    
+        // Append animation keyframes for assembly_cpu_glass to head
+        const glassStyle = document.createElement('style');
+        glassStyle.innerHTML = slideUpGlassKeyframes;
+        document.head.appendChild(glassStyle);
+    
+        // Animation keyframes for assembly_cpu_front
+        const slideUpFrontKeyframes = `@keyframes slide-up-front {
+            from {
+                top: 55.4%;
+            }
+            to {
+                top: -44.4%;
+            }
+        }`;
+    
+        // Append animation keyframes for assembly_cpu_front to head
+        const frontStyle = document.createElement('style');
+        frontStyle.innerHTML = slideUpFrontKeyframes;
+        document.head.appendChild(frontStyle);
+    
+        // Function to trigger slide up animation for new images
+        function slideUpImages() {
+            document.getElementById('assembly_cpu_glass').style.animation = 'slide-up-glass 3s forwards';
+            document.getElementById('assembly_cpu_front').style.animation = 'slide-up-front 3s forwards';
+        }
+    
+        // Add event listener to the Next button to trigger animation and redirect to KP.html
+        const nextButton = document.getElementById('nextButton');
+        nextButton.addEventListener('click', function() {
+            slideUpImages();
+            setTimeout(function() {
+                window.location.href = 'Processor.html'; // Redirect to KP.html after animation
+            }, 2300); // Adjust timeout to match animation duration
+        });
+    </script>
+</body>
+</html>
+
+
