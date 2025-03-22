@@ -41,4 +41,4 @@ This project aims to provide a hands-on learning experience for students by simu
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/vehicle-price-estimator.git
+   git clone 
